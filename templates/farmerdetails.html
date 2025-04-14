@@ -1,70 +1,104 @@
-{% extends 'base.html' %}
-{% block title %}
-Farmer Details
-{% endblock title %}
+{% extends "base.html" %}
 
+{% block content %}
+<div class="page-container">
+    <h1 class="page-title">Farmer Details</h1>
 
-
-{% block body %}
- <h3 class="text-center"><span>Farmer Details</span> </h3>
-  
-{% with messages=get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-
-<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-    {{message}}
-
-
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Aadhar Number</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Farming Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for farmer in query %}
+                    <tr>
+                        <td>{{ farmer.rid }}</td>
+                        <td>{{ farmer.farmername }}</td>
+                        <td>{{ farmer.adharnumber }}</td>
+                        <td>{{ farmer.age }}</td>
+                        <td>{{ farmer.gender }}</td>
+                        <td>{{ farmer.phonenumber }}</td>
+                        <td>{{ farmer.address }}</td>
+                        <td>{{ farmer.farming }}</td>
+                        <td>
+                            <a href="{{ url_for('edit', rid=farmer.rid) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{{ url_for('delete', rid=farmer.rid) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-<br>
+{% endblock %}
 
-<div class="container mt-3">
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">RID</th>
-      <th scope="col">FARMER NAME</th>
-      <th scope="col">ADHAR NUMBER</th>
-      <th scope="col">AGE</th>
-      <th scope="col">GENDER</th>
-      <th scope="col">PHONE NUMBER</th>
-      <th scope="col">ADDRESS</th>
-      <th scope="col">FARMING</th>
-      <th scope="col">EDIT</th>
-      <th scope="col">DELETE</th>
-      <th scope="col">ADD AGRO PRODUCT</th>
+{% block extra_css %}
+<style>
+    .page-container {
+        padding: 2rem 0;
+    }
 
-    </tr>
-  </thead>
-  <tbody>
-  {% for post in query %}
-    <tr>
-      <th scope="row">{{post.rid}}</th>
-      <td>{{post.farmername}}</td>
-      <td>{{post.adharnumber}}</td>
-      <td>{{post.age}}</td>
-      <td>{{post.gender}}</td>
-      <td>{{post.phonenumber}}</td>
-      <td>{{post.address}}</td>
-      <td>{{post.farming}}</td>
+    .page-title {
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+        text-align: center;
+    }
 
-    <td><a href="/edit/{{post.rid}}"><button class="btn btn-success">Edit </button> </a> </td>
-    
-    <td><a href="/delete/{{post.rid}}"><button onclick="return confirm('Are you sure to Delete data');" class="btn btn-success">Delete </button> </a> </td>
-    <td><a href="/addagroproduct"><button class="btn btn-success">ADD </button> </a> </td>
-    </tr>
-{% endfor %}
-  
-  </tbody>
-</table>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-</div>
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        text-align: left;
+    }
 
+    .table th {
+        background-color: var(--primary-color);
+        color: white;
+    }
 
+    .table tr:nth-child(even) {
+        background-color: var(--secondary-color);
+    }
 
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
 
-{% endblock body %}
+    .btn-danger {
+        background-color: var(--error-color);
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #d32f2f;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    @media (max-width: 768px) {
+        .table {
+            display: block;
+        }
+    }
+</style>
+{% endblock %}

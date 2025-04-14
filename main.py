@@ -4,6 +4,8 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
+import pymysql
+pymysql.install_as_MySQLdb()
 
 
 # MY db connection
@@ -20,9 +22,8 @@ login_manager.login_view='login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# app.config['SQLALCHEMY_DATABASE_URL']='mysql://username:password@localhost/database_name'
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/farmers'
-db=SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/farmers'
+db = SQLAlchemy(app)
 
 # here we will create db models that is tables
 class Test(db.Model):
@@ -250,4 +251,4 @@ def test():
         return 'My db is not Connected'
 
 
-app.run(debug=True)    
+app.run(debug=True)

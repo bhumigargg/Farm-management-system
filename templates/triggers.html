@@ -1,55 +1,82 @@
-{% extends 'base.html' %}
-{% block title %}
-Triggers
-{% endblock title %}
+{% extends "base.html" %}
 
+{% block content %}
+<div class="page-container">
+    <h1 class="page-title">System Records</h1>
 
-
-{% block body %}
- <h3 class="text-center"><span>Farmers Triggers Records</span> </h3>
-  
-{% with messages=get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-
-<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-    {{message}}
-
-
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Action</th>
+                        <th>Table</th>
+                        <th>Record ID</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in query %}
+                    <tr>
+                        <td>{{ record.id }}</td>
+                        <td>{{ record.action }}</td>
+                        <td>{{ record.table_name }}</td>
+                        <td>{{ record.record_id }}</td>
+                        <td>{{ record.timestamp }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-<br>
+{% endblock %}
 
-<div class="container mt-4">
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-   
-      <th scope="col">FARMER ID</th>
-      <th scope="col">ACTION</th>
-      <th scope="col">TIMESTAMP</th>
+{% block extra_css %}
+<style>
+    .page-container {
+        padding: 2rem 0;
+    }
 
+    .page-title {
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+        text-align: center;
+    }
 
-    </tr>
-  </thead>
-  <tbody>
-  {% for post in query %}
-    <tr>
-      
-      <td>{{post.fid}}</td>
-      <td>{{post.action}}</td>
-      <td>{{post.timestamp}}</td>
-     
-  
-    </tr>
-{% endfor %}
-  
-  </tbody>
-</table>
-</div>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1rem;
+    }
 
+    .table th,
+    .table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
 
+    .table th {
+        background-color: var(--light-color);
+        font-weight: 600;
+        color: var(--text-color);
+    }
 
-{% endblock body %}
+    .table tbody tr:hover {
+        background-color: var(--light-color);
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    @media (max-width: 768px) {
+        .table th,
+        .table td {
+            padding: 0.75rem;
+        }
+    }
+</style>
+{% endblock %}

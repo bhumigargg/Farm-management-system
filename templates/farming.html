@@ -1,51 +1,90 @@
-{% extends 'base.html' %}
-{% block title %}
-Add Farming
-{% endblock title %}
+{% extends "base.html" %}
 
-{% block body %}
- <h3 class="text-center bg-success text-white"><span>Add Farming</span> </h3>
-  
-{% with messages=get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
+{% block content %}
+<div class="page-container">
+    <h1 class="page-title">Add Farming Type</h1>
+    
+    <div class="card">
+        <form method="POST" action="{{ url_for('addfarming') }}" class="form">
+            <div class="form-group">
+                <label for="farming">Farming Type</label>
+                <input type="text" class="form-control" id="farming" name="farming" required placeholder="Enter farming type">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add Farming Type</button>
+            </div>
+        </form>
+    </div>
 
-<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-    {{message}}
-
-
+    <div class="card mt-4">
+        <h2>Existing Farming Types</h2>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Farming Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for farming in farmings %}
+                    <tr>
+                        <td>{{ farming.fid }}</td>
+                        <td>{{ farming.farmingtype }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-<br>
-<div class="container">
+{% endblock %}
 
-<div class="row">
+{% block extra_css %}
+<style>
+    .page-container {
+        padding: 2rem 0;
+    }
 
-<div class="col-md-4"></div>
-<div class="col-md-4">
+    .page-title {
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+        text-align: center;
+    }
 
-<form action="/addfarming" method="post">
+    .form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
 
-<div class="form-group">
-<label for="dept">Enter Farming Type</label>
-<input type="text" class="form-control" name="farming" id="farming">
-</div>
-<br>
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        text-align: left;
+    }
 
-  <button type="submit" class="btn btn-success btn-sm btn-block">Add Farming</button>
-</form>
-<br>
-<br>
+    .table th {
+        background-color: var(--primary-color);
+        color: white;
+    }
 
-</div>
+    .table tr:nth-child(even) {
+        background-color: var(--secondary-color);
+    }
 
-<div class="col-md-4"></div>
+    .mt-4 {
+        margin-top: 2rem;
+    }
 
-</div></div>
-
-
-
-{% endblock body %}
+    .table-responsive {
+        overflow-x: auto;
+    }
+</style>
+{% endblock %}

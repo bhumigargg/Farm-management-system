@@ -7,7 +7,91 @@ menu-active
 {% endblock home %}
 
 {% block body %}
-  
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="fade-in">Welcome to Farm Management System</h1>
+                <p class="lead fade-in">Empowering farmers with modern technology and sustainable practices for better agricultural management.</p>
+                <div class="hero-buttons fade-in">
+                    <a href="{{ url_for('signup') }}" class="btn btn-primary">Get Started</a>
+                    <a href="{{ url_for('farmerdetails') }}" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="col">
+                <img src="{{ url_for('static', filename='images/farm-hero.jpg') }}" alt="Farm Management" class="hero-image fade-in">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <h2 class="text-center mb-4">Key Features</h2>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Crop Management</h3>
+                    <p>Track and manage your crops efficiently with our advanced monitoring system.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <i class="fas fa-tractor"></i>
+                    <h3>Equipment Tracking</h3>
+                    <p>Keep track of your farming equipment and maintenance schedules.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Analytics</h3>
+                    <p>Get detailed insights and analytics about your farm's performance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section class="products">
+    <div class="container">
+        <h2 class="text-center mb-4">Featured Products</h2>
+        <div class="row">
+            <div class="col">
+                <div class="card product-card">
+                    <img src="{{ url_for('static', filename='images/product1.jpg') }}" alt="Organic Vegetables">
+                    <h3>Organic Vegetables</h3>
+                    <p>Fresh, locally grown organic vegetables from our partner farms.</p>
+                    <a href="{{ url_for('agroproducts') }}" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card product-card">
+                    <img src="{{ url_for('static', filename='images/product2.jpg') }}" alt="Farm Equipment">
+                    <h3>Farm Equipment</h3>
+                    <p>High-quality farming equipment and tools for modern agriculture.</p>
+                    <a href="{{ url_for('agroproducts') }}" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="container">
+        <div class="card cta-card">
+            <h2>Ready to Get Started?</h2>
+            <p>Join our community of farmers and take your agricultural business to the next level.</p>
+            <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up Now</a>
+        </div>
+    </div>
+</section>
+
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="footer-top">
@@ -18,8 +102,113 @@ menu-active
    
       <div class="credits">
       <br>
-        Developed by <a href="/">Anees </a>
+        Developed by <a href="/">Bhumi Garg and Kashish Rai</a>
       </div>
     </div>
   </footer><!-- End  Footer -->
 {% endblock body %}
+
+{% block extra_css %}
+<style>
+    .hero {
+        padding: 80px 0;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+    }
+
+    .hero h1 {
+        color: white;
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero .lead {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .hero-image {
+        max-width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .features {
+        padding: 80px 0;
+        background-color: var(--background-color);
+    }
+
+    .features .card {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .features .card i {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .products {
+        padding: 80px 0;
+    }
+
+    .product-card {
+        text-align: center;
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .cta {
+        padding: 80px 0;
+        background-color: var(--background-color);
+    }
+
+    .cta-card {
+        text-align: center;
+        padding: 3rem;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+    }
+
+    .cta-card h2 {
+        color: white;
+    }
+
+    .cta-card p {
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .hero-buttons {
+            justify-content: center;
+        }
+
+        .hero-image {
+            margin-top: 2rem;
+        }
+
+        .features .card {
+            margin-bottom: 2rem;
+        }
+    }
+</style>
+{% endblock %}

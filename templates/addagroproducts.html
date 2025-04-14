@@ -1,78 +1,125 @@
-{% extends 'base.html' %}
-{% block title %}
-Add AgroProducts
-{% endblock title %}
+{% extends "base.html" %}
 
+{% block content %}
+<div class="page-container">
+    <div class="card">
+        <h1 class="page-title">Add New Product</h1>
+        
+        {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
 
+        <form action="{{ url_for('addagroproduct') }}" method="post" class="form">
+            <div class="form-group">
+                <label for="username">Farmer Name</label>
+                <input type="text" class="form-control" name="username" value="{{ current_user.username }}" required readonly>
+            </div>
 
-{% block body %}
- <h3 class="text-center"><span>Add Agro Products</span> </h3>
-  
-{% with messages=get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
+            <div class="form-group">
+                <label for="email">Farmer Email</label>
+                <input type="email" class="form-control" name="email" value="{{ current_user.email }}" required readonly>
+            </div>
 
-<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-    {{message}}
+            <div class="form-group">
+                <label for="productname">Product Name</label>
+                <input type="text" class="form-control" name="productname" id="productname" required>
+            </div>
 
+            <div class="form-group">
+                <label for="productdesc">Product Description</label>
+                <textarea class="form-control" name="productdesc" id="productdesc" rows="3" required></textarea>
+            </div>
 
+            <div class="form-group">
+                <label for="price">Price (₹)</label>
+                <input type="number" class="form-control" name="price" id="price" required min="0">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </div>
+        </form>
+    </div>
 </div>
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-<br>
-<div class="container">
+{% endblock %}
 
-<div class="row">
+{% block extra_css %}
+<style>
+    .page-container {
+        padding: 2rem 0;
+    }
 
-<div class="col-md-4"></div>
-<div class="col-md-4">
+    .card {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: var(--card-background);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
 
-<form action="/addagroproduct" method="post">
-<div class="form-group">
+    .page-title {
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+        text-align: center;
+    }
 
-<label for="username">Farmer Name</label>
-<input type="text" class="form-control" name="username" value="{{current_user.username}}" id="{{current_user.username}}" required>
-</div>
-<br>
-<div class="form-group">
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
 
-<label for="username">Farmer Email</label>
-<input type="email" class="form-control" name="email" value="{{current_user.email}}" id="{{current_user.email}}" required>
-</div>
-<br>
-<div class="form-group">
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 1rem;
+    }
 
-<label for="rollno">Product Name</label>
-<input type="text" class="form-control" name="productname" id="productname" required>
-</div>
-<br>
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.1);
+    }
 
+    .form-control[readonly] {
+        background-color: var(--light-color);
+    }
 
-<div class="form-group">
-<label for="productdesc">Product Description</label>
-<textarea class="form-control" name="productdesc" id="productdesc" required></textarea>
-</div>
-<br>
+    .btn-primary {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
 
-<div class="form-group">
+    .btn-primary:hover {
+        background-color: var(--primary-color-dark);
+    }
 
-<label for="price">Price</label>
-<input type="number" class="form-control" name="price" id="price" required>
-</div>
-<br>
-  
-  <button type="submit" class="btn btn-success  btn-block">Add Product</button>
-</form>
-<br>
-<br>
+    .alert {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+    }
 
-</div>
+    .alert-info {
+        background-color: var(--info-color);
+        color: white;
+    }
 
-<div class="col-md-4"></div>
-
-</div></div>
-
-
-
-{% endblock body %}
+    @media (max-width: 768px) {
+        .card {
+            padding: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}

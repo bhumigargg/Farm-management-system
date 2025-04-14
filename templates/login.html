@@ -1,39 +1,101 @@
-{% extends 'auth.html' %}
-{% block title %}
-login
-{% endblock title %}
+{% extends "base.html" %}
+
 {% block content %}
- <h1 class="mb-4 pb-0"><span>Login</span> </h1>
-  
-{% with messages=get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-
-<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-    {{message}}
-
-
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="text-center mb-4">Login</h2>
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </div>
+        </form>
+        <div class="text-center mt-3">
+            <p>Don't have an account? <a href="{{ url_for('signup') }}" class="text-primary">Sign Up</a></p>
+        </div>
+    </div>
 </div>
+{% endblock %}
 
+{% block extra_css %}
+<style>
+    .auth-container {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
 
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-<form class=" text-white py-3 px-3" action="/login" method="post">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control mb-3" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" required>
-    
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
-  </div>
-<br>
-  <button type="submit" class="form-control bg-success text-white">Login</button>
-   <p class="mb-2 pb-0">New User?</p>
-    
-      <a href="/signup" class="about-btn scrollto">Signup</a>
-</form>
-     
-{% endblock content %}
+    .auth-card {
+        background: var(--card-background);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .auth-card h2 {
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        outline: none;
+    }
+
+    .btn-block {
+        width: 100%;
+        padding: 0.75rem;
+    }
+
+    .text-primary {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .text-primary:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .auth-container {
+            padding: 1rem;
+        }
+
+        .auth-card {
+            padding: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}

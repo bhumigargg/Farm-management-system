@@ -221,6 +221,7 @@ h6 {
     margin: 0;
     padding: 0;
     list-style: none;
+    
 }
 
 .nav-menu ul {
@@ -229,7 +230,7 @@ h6 {
     top: 100%;
     left: 0;
     z-index: 99;
-}
+    }
 
 .nav-menu li {
     position: relative;
@@ -338,10 +339,10 @@ h6 {
 
 .nav-menu li.buy-tickets a {
     color: #fff;
-    background: #198754!important;
+    background: #84958d!important;
     padding: 7px 22px;
     border-radius: 50px;
-    border: 2px solid #198754!important;
+    border: 2px solid #859d92!important;
     transition: all ease-in-out 0.3s;
     font-weight: 500;
     margin-left: 8px;
