@@ -1714,3 +1714,29 @@ body.mobile-nav-active #mobile-nav-toggle {
     font-size: 13px;
     color: #ddd;
 }
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo-icon {
+    margin-right: 0.5rem;
+    color: #27ae60;
+    font-size: 1.8rem;
+}
+
+.logo:hover {
+    color: #27ae60;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(15deg);
+    transition: transform 0.3s ease;
+}

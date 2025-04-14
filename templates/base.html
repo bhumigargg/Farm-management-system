@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Farm Management System{% endblock %}</title>
+  <title>{% block title %}{% endblock %} - CropKeeper</title>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -248,7 +248,10 @@
   <!-- Navigation -->
   <nav>
     <div class="container nav-container">
-      <a href="{{ url_for('index') }}" class="logo">Farm Management</a>
+      <a href="{{ url_for('index') }}" class="logo">
+        <i class="fas fa-leaf logo-icon"></i>
+        CropKeeper
+      </a>
       <div class="nav-links">
         <a href="{{ url_for('index') }}">Home</a>
         <a href="{{ url_for('addfarming') }}">Farming</a>
@@ -285,7 +288,7 @@
       <div class="footer-content">
         <div class="footer-section">
           <h3>Contact Us</h3>
-          <p>Email: info@farmmanagement.com</p>
+          <p>Email: info@cropkeeper.com</p>
           <p>Phone: +1 234 567 890</p>
         </div>
         <div class="footer-section">
@@ -307,7 +310,7 @@
         </div>
       </div>
       <div class="copyright">
-        <p>&copy; 2024 Farm Management System. All rights reserved.</p>
+        <p>&copy; 2024 CropKeeper. All rights reserved.</p>
       </div>
     </div>
   </footer>
