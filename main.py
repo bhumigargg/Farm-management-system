@@ -123,8 +123,9 @@ def addfarming():
         dep=Farming(farmingtype=farmingtype)
         db.session.add(dep)
         db.session.commit()
-        flash("Farming Addes","success")
-    return render_template('farming.html')
+        flash("Farming Added","success")
+    farmings = Farming.query.all()
+    return render_template('farming.html', farmings=farmings)
 
 
 

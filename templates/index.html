@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-Student
+Home - CropKeeper
 {% endblock title %}
 {% block home %}
 menu-active
@@ -19,19 +19,6 @@ menu-active
         <div class="hero-buttons fade-in">
             <a href="{{ url_for('signup') }}" class="btn btn-primary">Get Started</a>
             <a href="{{ url_for('farmerdetails') }}" class="btn btn-secondary">Learn More</a>
-        </div>
-    </div>
-</section>
-
-<!-- Field Image Section -->
-<section class="field-section">
-    <div class="field-image">
-        <img src="{{ url_for('static', filename='images/bg.jpg') }}" alt="Agricultural Field" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400?text=Image+Not+Found'">
-        <div class="field-overlay">
-            <div class="field-content">
-                <h2>Modern Farming Solutions</h2>
-                <p>Experience the future of agriculture with our innovative tools and technologies</p>
-            </div>
         </div>
     </div>
 </section>
@@ -126,12 +113,12 @@ menu-active
 <style>
     /* Hero Section */
     .hero-section {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                    url("{{ url_for('static', filename='images/bg.jpg') }}");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                         url("{{ url_for('static', filename='images/bg.jpg') }}");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        min-height: 80vh;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -140,7 +127,6 @@ menu-active
         padding: 4rem 2rem;
         margin: 0;
         position: relative;
-        z-index: 1;
     }
 
     .hero-content {
