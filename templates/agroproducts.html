@@ -9,7 +9,6 @@
         {% endif %}
     </div>
 
-    {% if query %}
     <div class="products-grid">
         {% for product in query %}
         <div class="product-card">
@@ -24,11 +23,6 @@
         </div>
         {% endfor %}
     </div>
-    {% else %}
-    <div class="no-products">
-        <p>No products available yet. {% if current_user.is_authenticated %}Be the first to add a product!{% endif %}</p>
-    </div>
-    {% endif %}
 </div>
 {% endblock %}
 
@@ -36,6 +30,9 @@
 <style>
     .page-container {
         padding: 2rem 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 90%;
     }
 
     .page-header {
@@ -43,6 +40,7 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 2rem;
+        width: 100%;
     }
 
     .page-title {
@@ -53,6 +51,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 2rem;
+        width: 100%;
     }
 
     .product-card {
@@ -91,14 +90,6 @@
     .seller {
         color: var(--text-light);
         font-size: 0.9rem;
-    }
-
-    .no-products {
-        text-align: center;
-        padding: 2rem;
-        background: var(--light-color);
-        border-radius: 8px;
-        color: var(--text-light);
     }
 
     @media (max-width: 768px) {
