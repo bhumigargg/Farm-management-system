@@ -5,24 +5,41 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
 import pymysql
+import os
+
+# Try to load environment variables, but don't fail if dotenv is not available
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    print("python-dotenv not installed, using default values")
+
 pymysql.install_as_MySQLdb()
 
-
 # MY db connection
-local_server= True
+local_server = os.getenv('LOCAL_SERVER', 'True').lower() == 'true'
 app = Flask(__name__)
-app.secret_key='harshithbhaskar'
-
+app.secret_key = os.getenv('SECRET_KEY', 'harshithbhaskar')
 
 # this is for getting unique user access
-login_manager=LoginManager(app)
-login_manager.login_view='login'
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/farmers'
+# Database configuration
+if local_server:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/farmers'
+else:
+    # For production, use the DATABASE_URL environment variable
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql://root:@localhost/farmers')
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 299
+app.config['SQLALCHEMY_POOL_TIMEOUT'] = 20
+
 db = SQLAlchemy(app)
 
 # here we will create db models that is tables
@@ -274,4 +291,5 @@ def test():
         return 'My db is not Connected'
 
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
