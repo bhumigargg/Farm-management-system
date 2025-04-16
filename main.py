@@ -4,15 +4,23 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
-import pymysql
 import os
+import sqlite3
 
 # Initialize Flask app
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'harshithbhaskar')
 
 # Configure SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql://root:@localhost/farmers')
+if os.getenv('FLASK_ENV') == 'production':
+    # Use SQLite in production
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///farmers.db'
+else:
+    # Use MySQL in development
+    import pymysql
+    pymysql.install_as_MySQLdb()
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/farmers'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_POOL_RECYCLE'] = 299
 app.config['SQLALCHEMY_POOL_TIMEOUT'] = 20
@@ -21,9 +29,6 @@ app.config['SQLALCHEMY_POOL_TIMEOUT'] = 20
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
-
-# Install PyMySQL
-pymysql.install_as_MySQLdb()
 
 @login_manager.user_loader
 def load_user(user_id):

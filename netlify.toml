@@ -1,0 +1,8 @@
+[build]
+  command = "pip install -r requirements.txt"
+  publish = "."
+
+[build.environment]
+  FLASK_APP = "main.py"
+  FLASK_ENV = "production"
+  PYTHON_VERSION = "3.9" 
