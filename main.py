@@ -127,8 +127,30 @@ def addfarming():
     farmings = Farming.query.all()
     return render_template('farming.html', farmings=farmings)
 
-
-
+@app.route('/add_sample_farming_types')
+@login_required
+def add_sample_farming_types():
+    sample_types = [
+        "Organic Farming",
+        "Hydroponic Farming",
+        "Aquaponic Farming",
+        "Vertical Farming",
+        "Dairy Farming",
+        "Poultry Farming",
+        "Mixed Farming",
+        "Subsistence Farming",
+        "Commercial Farming",
+        "Plantation Farming"
+    ]
+    
+    for farming_type in sample_types:
+        if not Farming.query.filter_by(farmingtype=farming_type).first():
+            new_type = Farming(farmingtype=farming_type)
+            db.session.add(new_type)
+    
+    db.session.commit()
+    flash("Sample farming types added successfully!", "success")
+    return redirect(url_for('addfarming'))
 
 @app.route("/delete/<string:rid>",methods=['POST','GET'])
 @login_required

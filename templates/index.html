@@ -7,235 +7,169 @@ menu-active
 {% endblock home %}
 
 {% block body %}
-<!-- Hero Section with Background Image -->
-<section class="hero-section">
-    <div class="hero-content">
-        <h1 class="fade-in">Welcome to CropKeeper</h1>
-        <p class="lead fade-in">Empowering farmers with modern technology and sustainable practices for better agricultural management.</p>
-        <div class="tagline fade-in">
-            <span class="tagline-text">Guarding Growth,</span>
-            <span class="tagline-text">Growing trust</span>
-        </div>
-        <div class="hero-buttons fade-in">
-            <a href="{{ url_for('signup') }}" class="btn btn-primary">Get Started</a>
-            <a href="{{ url_for('farmerdetails') }}" class="btn btn-secondary">Learn More</a>
-        </div>
+<!-- Main Image Section -->
+<section class="main-image-section">
+    <div class="main-image-container" style="width: 100%; height: 100%;">
+        <img src="{{ url_for('static', filename='images/bg.jpg') }}" alt="Farm Management" class="main-image">
     </div>
 </section>
 
 <!-- Features Section -->
-<section class="features-section">
+<section id="features" class="features-section">
     <div class="container">
-        <h2 class="section-title">Key Features</h2>
+        <div class="section-header">
+            <span class="section-subtitle">Our Services</span>
+            <h2 class="section-title">Comprehensive Farm Management Solutions</h2>
+        </div>
         <div class="features-grid">
             <div class="feature-card">
-                <i class="fas fa-seedling"></i>
+                <div class="feature-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
                 <h3>Crop Management</h3>
                 <p>Track and manage your crops efficiently with our advanced monitoring system.</p>
+                <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="feature-card">
-                <i class="fas fa-tractor"></i>
+                <div class="feature-icon">
+                    <i class="fas fa-tractor"></i>
+                </div>
                 <h3>Equipment Tracking</h3>
                 <p>Keep track of your farming equipment and maintenance schedules.</p>
+                <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="feature-card">
-                <i class="fas fa-chart-line"></i>
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
                 <h3>Analytics</h3>
                 <p>Get detailed insights and analytics about your farm's performance.</p>
+                <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
 </section>
-
-<!-- Products Section -->
-<section class="products-section">
-    <div class="container">
-        <h2 class="section-title">Featured Products</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="{{ url_for('static', filename='images/vegetables.jpg') }}" alt="Organic Vegetables">
-                <div class="product-content">
-                    <h3>Organic Vegetables</h3>
-                    <p>Fresh, locally grown organic vegetables from our partner farms.</p>
-                    <a href="{{ url_for('agroproducts') }}" class="btn btn-primary">View Products</a>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="{{ url_for('static', filename='images/equipment.jpg') }}" alt="Farm Equipment">
-                <div class="product-content">
-                    <h3>Farm Equipment</h3>
-                    <p>High-quality farming equipment and tools for modern agriculture.</p>
-                    <a href="{{ url_for('agroproducts') }}" class="btn btn-primary">View Products</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-content">
-            <h2>Ready to Get Started?</h2>
-            <p>Join our community of farmers and take your agricultural business to the next level.</p>
-            <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up Now</a>
-        </div>
-    </div>
-</section>
-
-<!-- ======= Footer ======= -->
-<footer id="footer">
-    <div class="footer-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 footer-contact">
-                    <h3 style="color: white;">Contact Us</h3>
-                    <p style="color: white;">
-                        <i>info@cropkeeper.com<br></i> 
-                        <i>+1 234 567 890<br></i> 
-                        <i>123 Farm Street, Agriculture City</i> 
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="credits">
-            <br>
-            Developed by <a href="/" style="color: white;">Bhumi Garg and Kashish Rai</a>
-        </div>
-    </div>
-</footer>
-{% endblock body %}
+{% endblock %}
 
 {% block extra_css %}
 <style>
-    /* Hero Section */
-    .hero-section {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                         url("{{ url_for('static', filename='images/bg.jpg') }}");
+    /* Main Image Section */
+    .main-image-section {
+        background: url("{{ url_for('static', filename='images/bg.jpg') }}") no-repeat center center;
         background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        min-height: 100vh;
+        height: 400px; /* Adjust height as needed */
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: white;
-        padding: 4rem 2rem;
-        margin: 0;
-        position: relative;
     }
 
-    .hero-content {
-        position: relative;
-        z-index: 2;
-        max-width: 800px;
+    /* Container */
+    .container {
+        width: 100%;
+        max-width: 1200px;
         margin: 0 auto;
+        padding: 0 1.5rem;
     }
 
-    .tagline {
-        margin: 2rem 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        position: relative;
-        z-index: 3;
+    /* Features Section */
+    .features-section {
+        padding: 6rem 0;
+        background-color: #f9f9f9;
     }
 
-    .tagline-text {
-        font-family: 'Poppins', sans-serif;
-        font-size: 2.5rem;
-        font-weight: 700;
-        letter-spacing: 1px;
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-subtitle {
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        font-weight: 600;
         text-transform: uppercase;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-        line-height: 1.2;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
         display: block;
     }
 
-    .tagline-text:first-child {
-        color: #4CAF50;
+    .section-title {
+        font-size: 2.5rem;
+        color: var(--primary-dark);
     }
 
-    .tagline-text:last-child {
-        color: white;
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
     }
 
-    /* Ensure proper spacing */
-    .hero-content h1 {
-        margin-bottom: 1.5rem;
-        font-size: 3.5rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-content .lead {
-        margin-bottom: 2rem;
-        font-size: 1.5rem;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        margin-top: 2rem;
-    }
-
-    /* Footer Styles */
-    #footer {
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-        color: white;
-        padding: 3rem 0;
-        margin-top: 0;
+    .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         position: relative;
-        z-index: 2;
+        overflow: hidden;
     }
 
-    .footer-contact h3,
-    .footer-contact p,
-    .footer-contact i {
-        color: white !important;
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
-    .footer-contact p {
-        font-size: 1.1rem;
-        line-height: 2;
-        margin: 0;
-        opacity: 0.9;
+    .feature-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        background: rgba(46, 125, 50, 0.1);
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
 
-    .footer-contact i {
-        margin-right: 10px;
-        width: 20px;
-        text-align: center;
+    .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-dark);
     }
 
-    .credits {
-        text-align: center;
-        color: white;
-        padding-top: 2rem;
-        opacity: 0.9;
+    .feature-card p {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
     }
 
-    .credits a {
-        color: white;
+    .feature-link {
+        color: var(--primary-color);
+        font-weight: bold;
         text-decoration: none;
-        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s ease;
     }
 
-    .credits a:hover {
-        text-decoration: underline;
-        opacity: 1;
+    .feature-link:hover {
+        color: var(--primary-dark);
     }
 
-    /* Ensure text is visible on all backgrounds */
-    .footer-contact p,
-    .footer-contact h3,
-    .credits {
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .features-section {
+            padding: 4rem 0;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
 {% endblock %}

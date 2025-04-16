@@ -402,15 +402,18 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="container" style="margin: 0; padding: 0;">
+  <!-- Main Content --><main style="padding:50px;" >
+  
+    
+</main>
+  
     {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
+{% if messages %}
+{% for category, message in messages %}
           <div class="alert alert-{{ category }}">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
     
     {% block content %}{% endblock %}
   </main>

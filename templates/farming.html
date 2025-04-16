@@ -2,16 +2,17 @@
 
 {% block content %}
 <div class="page-container" style="display: flex; flex-direction: column; align-items: center;">
-    <h1 class="page-title">Add Farming Type</h1>
+    <h1 class="page-title">Farming Types Management</h1>
     
     <div class="card" style="width: 100%; max-width: 600px;">
         <form method="POST" action="{{ url_for('addfarming') }}" class="form">
             <div class="form-group">
-                <label for="farming">Farming Type</label>
+                <label for="farming">Add New Farming Type</label>
                 <input type="text" class="form-control" id="farming" name="farming" required placeholder="Enter farming type">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Add Farming Type</button>
+                <a href="{{ url_for('add_sample_farming_types') }}" class="btn btn-secondary">Add Sample Types</a>
             </div>
         </form>
     </div>
@@ -27,12 +28,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for farming in farmings %}
-                    <tr>
-                        <td>{{ farming.fid }}</td>
-                        <td>{{ farming.farmingtype }}</td>
-                    </tr>
-                    {% endfor %}
+                    {% if farmings %}
+                        {% for farming in farmings %}
+                        <tr>
+                            <td>{{ farming.fid }}</td>
+                            <td>{{ farming.farmingtype }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="2" class="text-center">No farming types added yet. Add some using the form above or click "Add Sample Types".</td>
+                        </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
@@ -63,6 +70,10 @@
         margin: 0 auto;
     }
 
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
     .form-group label {
         font-family: 'Poppins', sans-serif;
         font-size: 1.2rem;
@@ -80,6 +91,7 @@
         border: 2px solid var(--border-color);
         border-radius: 4px;
         transition: border-color 0.3s ease;
+        width: 100%;
     }
 
     .form-control::placeholder {
@@ -96,8 +108,31 @@
         box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
     }
 
-    .form-control:focus::placeholder {
-        color: transparent;
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-right: 0.5rem;
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .table {
@@ -142,6 +177,10 @@
         color: var(--primary-color);
         margin-bottom: 1.5rem;
         letter-spacing: 0.3px;
+    }
+
+    .text-center {
+        text-align: center;
     }
 </style>
 {% endblock %}
