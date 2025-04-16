@@ -1,18 +1,32 @@
 # **Farmer Management System**
 
-The **Farmer Management System** is a web-based platform designed to empower farmers by providing tools for crop management, equipment tracking, analytics, and access to agricultural products. The system aims to modernize farming practices and improve efficiency through technology.
+The **Farmer Management System** is a web-based platform designed to empower farmers by providing tools for crop management, equipment tracking and access to agricultural products. The system aims to modernize farming practices and improve efficiency through technology.
 
 ---
 
 ## **Features**
-- **Crop Management**: Track and manage crops efficiently with advanced monitoring tools.
+- **Crop Management**: Track and manage crops efficiently.
 - **Equipment Tracking**: Keep track of farming equipment and maintenance schedules.
-- **Analytics**: Gain insights into farm performance with detailed analytics.
 - **Product Marketplace**: Access a wide range of agricultural products, including organic vegetables and farming equipment.
 - **User Management**: Farmers can register, log in, and manage their profiles.
 - **Responsive Design**: Fully responsive layout for seamless use on desktops, tablets, and mobile devices.
 
 ---
+
+## **Key Pages**
+
+### **Home Page**
+- Displays a hero section with key features and call-to-action buttons.
+
+### **Farming Page**
+- Allows farmers to add and manage farming-related data.
+
+### **Products Page**
+- Showcases agricultural products available for purchase.
+
+### **Farmer Details Page**
+- Displays detailed information about registered farmers.
+
 
 ## **Technologies Used**
 - **Frontend**:
@@ -34,7 +48,7 @@ The **Farmer Management System** is a web-based platform designed to empower far
 
 ### **1. Clone the Repository**
 ```bash
-git clone https://github.com/your-username/Farmer-management-system.git
+git clone https://github.com/bhumigargg/Farmer-management-system
 cd Farmer-management-system
 ```
 ### **2. Install Dependencies**
@@ -43,7 +57,7 @@ Make sure you have Python installed. Then, install the required Python packages:
 pip install -r requirements.txt
 ```
 ### **3. Configure the Database**
-  -Create a MySQL database (e.g., farmer_management).
+  -Create a MySQL database (e.g., farmer_management).  
   -Update the database connection string in main.py:
 ```bash
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/farmer_management'
@@ -52,3 +66,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/far
 ```bash
 python [main.py](http://_vscodecontentref_/1)
 ```
+
