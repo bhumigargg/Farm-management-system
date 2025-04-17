@@ -120,6 +120,7 @@ def triggers():
     query=Trig.query.all()
     return render_template('triggers.html',query=query)
 
+
 @app.route('/addfarming',methods=['POST','GET'])
 @login_required
 def addfarming():
