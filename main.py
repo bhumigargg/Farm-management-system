@@ -13,8 +13,7 @@ app.secret_key = os.getenv('SECRET_KEY', 'harshithbhaskar')
 
 # Configure SQLAlchemy
 if os.getenv('FLASK_ENV') == 'production':
-    # Use SQLite in production
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///farmers.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 else:
     # Use MySQL in development
     import pymysql
